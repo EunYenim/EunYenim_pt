@@ -85,3 +85,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// img text animation
+document.addEventListener("DOMContentLoaded", function() {
+    const images = document.querySelectorAll(".music_image");
+    const textBlocks = document.querySelectorAll(".img_num"); 
+    const textBlocks2 = document.querySelectorAll(".img_text");
+
+    images.forEach((image, index) => {
+        image.addEventListener("click", function() {
+            // 모든 텍스트를 회색으로 되돌림
+            textBlocks.forEach(text => text.classList.remove("active"));
+            textBlocks2.forEach(text => text.classList.remove("active"));
+
+            // 클릭된 이미지에 해당하는 텍스트만 흰색으로 변경
+            textBlocks[index].classList.add("active");
+            textBlocks2[index].classList.add("active");
+        });
+    });
+});

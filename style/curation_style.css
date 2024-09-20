@@ -293,7 +293,7 @@ transform: scale(0.8); /* 클릭 시 살짝 작아지는 효과 */
     display: inline-block;
     left: 75vw;
     bottom: 6vh;
-    color: snow;
+    color:rgb(0,255, 163, 100);
     z-index:3;
 }
 
@@ -414,15 +414,15 @@ transform: scale(0.8); /* 클릭 시 살짝 작아지는 효과 */
 
 .img_num {
     padding-top: 1rem;
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
+    padding-left: 2.5vw;
+    padding-right: 2.5vw;
 }
 
 .img_text_container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 1fr;
-    margin-top: 48vh;
+    margin-top: 49vh;
     width: 100vw;
     color: snow;
     position: absolute;
@@ -431,8 +431,47 @@ transform: scale(0.8); /* 클릭 시 살짝 작아지는 효과 */
 }
 
 .img_text {
+    line-height:1.5;
     padding-bottom: 1rem;
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
+    padding-left: 2.5vw;
+    padding-right: 2.5vw;
 }
 
+.img_tag{
+    margin-top: 1vh;
+    display:flex;
+    flex-direction: row;
+    font-family:"pretendard_SB";
+    font-size: .6vw;
+    gap: .4vw;
+    margin-left: -.5vw;
+}
+
+.img_tag p {
+    border: 1px solid dimgray;
+    padding: .3rem .8rem .3rem .8rem; 
+    border-radius: 20px; 
+}
+
+/* img_text animation */
+.img_text {
+    color: dimgray; /* 기본 상태에서는 회색 */
+    transition: color 0.3s ease; /* 색상 전환 애니메이션 */
+}
+
+.img_text.active {
+    color: white; /* 클릭 시 흰색 */
+    p{
+        background-color: mintcream;
+        color: #181818;
+    }
+}
+
+.img_num{
+    color:dimgray;
+    transition: color 0.3s ease;
+}
+
+.img_num.active {
+    color: white;
+}
