@@ -104,3 +104,47 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+// loading animation
+
+document.addEventListener("DOMContentLoaded", function() {
+    const numberDisplay = document.getElementById("numberDisplay");
+    let currentNumber = 1;
+    let interval;
+    let hasAnimated = false; // 애니메이션이 이미 실행되었는지 확인하는 변수
+
+    function updateNumber() {
+        numberDisplay.textContent = currentNumber;
+
+        if (currentNumber < 100) {
+            if (currentNumber < 50) {
+                currentNumber += Math.ceil(Math.random() * 5); // 앞부분은 빠르게 증가
+            } else if (currentNumber < 98) {
+                currentNumber += 1; // 중간 부분은 일정하게 증가
+            } else if (currentNumber === 98) {
+                setTimeout(() => {
+                    currentNumber += 1; // 99로 증가
+                }, 1000); // 1초 대기 후 증가
+            } else {
+                currentNumber += 1; // 99에서 100으로 증가
+            }
+        } else {
+            clearInterval(interval); // 100에 도달하면 멈춤
+        }
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                console.log("Loading wrapper is in view!"); // 감지 로그 추가
+                if (!hasAnimated) {
+                    hasAnimated = true; // 애니메이션 실행 상태 변경
+                    interval = setInterval(updateNumber, 50); // 50ms 간격으로 업데이트
+                }
+            }
+        });
+    });
+
+    // loading.wrapper 요소를 관찰합니다.
+    const loadingWrapper = document.querySelector("loading");
+    observer.observe(loadingWrapper);
+});
