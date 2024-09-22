@@ -55,6 +55,10 @@ body {
     font-family:'pretendard_M';
     src: url('/sources/font/pretendard/Pretendard-Medium.woff') format('truetype');
 }
+@font-face {
+    font-family:'pretendard_SB';
+    src: url('/sources/font/pretendard/Pretendard-SemiBold.woff') format('truetype');
+}
 
 
 .text_shadow1 {
@@ -77,6 +81,16 @@ text-shadow:0 0 3px #e6f3ff,
             0 0 1px #e6f3ff,
             0 0 0px #e6f3ff,
             0 0 1px #e6f3ff;
+}
+.text_shadow3 {
+text-shadow:0 0 3px rgb(0,255, 163, 100),
+            0 0 3px rgb(0,255, 163, 100),
+            0 0 0px rgb(0,255, 163, 100),
+            0 0 1px rgb(0,255, 163, 100),
+            0 0 1px rgb(0,255, 163, 100),
+            0 0 1px rgb(0,255, 163, 100),
+            0 0 0px rgb(0,255, 163, 100),
+            0 0 1px rgb(0,255, 163, 100);
 }
 
 /* animation setting */
@@ -206,12 +220,14 @@ text-shadow:0 0 3px #e6f3ff,
     top: -8rem;
     /* left: 16rem; */
 }
+
+/* sec 02 */
 .overview_sec {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: rgb(12, 12, 12);
-    height: 70vh;
+    height: 90vh;
     width: 100dvw;
 }
 
@@ -251,3 +267,173 @@ padding-top: 1rem;
 font-size: 3.5vh;
 }
 
+/* sec 03 */
+.trigger_sec {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    background-color:rgb(0, 0, 0);
+    display:flex;
+    justify-content: center;
+
+}
+ .top {
+    height: fit-content;
+    margin-top: 8.5vh;
+    display: flex;
+    flex-direction: row;
+    color: snow;
+    font-family:"pretendard_B";
+    font-size: 2.8vw;
+    gap: 2rem;
+ }
+
+.triggr_img_container {
+    /* justify-content: center; */
+    position: absolute;
+    top: 30vh;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 1px solid #ffffff;
+    width: 43rem;
+    height: 43rem;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    
+}
+
+ .triggr_img {
+    object-fit: cover;
+    width: 38rem;
+    height:38rem;
+    border-radius: 50%;
+ }
+
+
+ .trigger_text01 {
+    text-align: right;
+    top: 70vh;
+    left: 70vw;
+    position: absolute;
+    color: snow;
+    font-size: 1.3vw;
+    font-family:"pretendard_L";
+    line-height: 3rem;
+ }
+
+ .trigger_text02 {
+    text-align: left;
+    top: 30vh;
+    left: 16vw;
+    position: absolute;
+    color: snow;
+    font-size: 1.3vw;
+    font-family:"pretendard_L";
+    line-height: 3rem;
+ }
+ .trigger_text03 {
+    text-align: right;
+    top: 50vh;
+    left: 70vw;
+    position: absolute;
+    color: snow;
+    font-size: 1.3vw;
+    font-family:"pretendard_L";
+    line-height: 3rem;
+ }
+ .trigger_text04 {
+    text-align: left;
+    top: 78vh;
+    left: 16vw;
+    position: absolute;
+    color: snow;
+    font-size: 1.3vw;
+    font-family:"pretendard_L";
+    line-height: 3rem;
+ }
+
+
+ .trigger_text div {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.trigger_text div.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* sec04 */
+.trigger_overview_sec {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0, 0, 0);
+    height: 90vh;
+    width: 100dvw;
+
+}
+
+.trigger_overview_sec2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0, 0, 0);
+    height: 70vh;
+    width: 100vw;
+}
+.overview_sec2_container{
+    background-color:snow;
+    font-family:"pretendard_L";
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size:1.5vw;
+    width: 100vw;
+    height: 20vh;
+}
+.overview_sec2_text {
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-size:1.2vw;
+    line-height: 2rem;
+}
+
+.main_content_sec {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0, 0, 0);
+    height: 100vh;
+    width: 100vw;
+    color: snow;
+    text-align: center;
+}
+.main_s {
+    font-family:"pretendard_L";
+}
+.main_text {
+    font-family:"pretendard_SB";
+    margin-top: 7vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: snow;
+    font-size: 3vw;
+    line-height: 7rem;
+}
+
+.what_conetent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0, 0, 0);
+    height: 100vh;
+    width: 100vw;
+    color: snow;
+    text-align: center;
+}
