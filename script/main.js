@@ -78,3 +78,79 @@ document.addEventListener('DOMContentLoaded', function() {
 
     textSection.addEventListener('wheel', onScroll, { passive: false });
 });
+
+// main animation 
+document.addEventListener('DOMContentLoaded', function() {
+    const whatElements = document.querySelectorAll('.main_box span');
+    const whatSection = document.querySelector('.what_conetent');
+    const contentDetail1 = document.querySelector('.content_detail_l');
+    const contentDetail2 = document.querySelector('.content_detail_2');
+    let currentIndex = 0; // 현재 인덱스 추적
+    let isAnimating = false; // 애니메이션 진행 중인지 여부
+
+    // 텍스트 및 디테일 섹션 업데이트 함수
+    const updateVisibility = () => {
+        whatElements.forEach((el, index) => {
+            el.style.display = index === currentIndex ? 'inline' : 'none'; // 현재 인덱스의 텍스트만 표시
+        });
+
+        console.log('현재 인덱스:', currentIndex);
+
+        // main일 때 content_detail 표시, sub일 때 content_detail_2 표시
+        if (currentIndex === 0) {
+            contentDetail1.classList.add('fade-in');
+            contentDetail1.style.display = 'flex';
+            contentDetail2.classList.remove('fade-in');
+            contentDetail2.style.display = 'none';
+        } else {
+            contentDetail1.classList.remove('fade-in');
+            contentDetail1.style.display = 'none';
+            contentDetail2.classList.add('fade-in');
+            contentDetail2.style.display = 'flex';
+        }
+    };
+
+    // 스크롤 이벤트 처리
+    const onScroll = (event) => {
+        event.preventDefault();
+
+        if (isAnimating) return; // 애니메이션 진행 중이면 아무것도 하지 않음
+
+        isAnimating = true;
+
+        // 아래로 스크롤
+        if (event.deltaY > 0) {
+            if (currentIndex < whatElements.length - 1) {
+                currentIndex++;
+                updateVisibility();
+            } else {
+                // 마지막 텍스트에서 한 번 더 스크롤하면 다음 섹션으로 이동
+                document.querySelector('.background').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        // 위로 스크롤
+        else if (event.deltaY < 0) {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateVisibility();
+            } else {
+                // 첫 번째 텍스트에서 위로 스크롤하면 이전 섹션으로 이동
+                document.querySelector('.main_content_sec').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // 애니메이션 종료 후 상태 초기화
+        setTimeout(() => {
+            isAnimating = false;
+        }, 800); // 800ms 동안 애니메이션
+    };
+
+    updateVisibility(); // 페이지 로드 후 첫 번째 텍스트 표시
+
+    // 섹션에서 스크롤 이벤트 리스너 추가
+    whatSection.addEventListener('wheel', onScroll, { passive: false });
+});
+
+
+

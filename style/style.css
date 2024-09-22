@@ -429,6 +429,7 @@ font-size: 3.5vh;
 
 .what_conetent {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: rgb(0, 0, 0);
@@ -436,4 +437,113 @@ font-size: 3.5vh;
     width: 100vw;
     color: snow;
     text-align: center;
+}
+
+.what_conetent div {
+}
+.what {
+    color: #000;
+    font-family:"pretendard_M";
+    font-size: .8vw;
+    border: 1px solid #ffffff;
+    border-radius: 5rem;
+    background-color: snow;
+    padding: .6rem 1.6rem .6rem 1.6rem;
+}
+.content_line {
+    border-left: 2px dotted grey; /* 왼쪽에 2px 하얀색 점선 */
+    height: 14vh; /* 세로선의 높이 */
+    margin: 0 auto; /* 가운데 정렬 */
+}
+.main_box {
+    color:snow;
+    font-family:"pretendard_M";
+    font-size: .8vw;
+    border: 1px solid #ffffff;
+    border-radius: 5rem;
+    padding: .6rem 1.6rem .6rem 1.6rem;
+}
+
+/* .content_detail_1, .content_detail_2{
+    position: absolute;
+    color: snow;
+    display: flex;
+    flex-direction: column;
+    line-height: 4.5rem;
+    font-size: 1.8vw;
+    font-family:"pretendard_L";
+} */
+.main_box span {
+    opacity: 1;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.main_box span.visible {
+    opacity: 1;
+}
+
+
+.content_detail_l div, .content_detail_2 div {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+    display: none; /* 기본적으로 숨김 */
+}
+
+.content_detail_l.fade-in div, .content_detail_2.fade-in div {
+    opacity: 1;
+    transform: translateY(0);
+    display: flex;
+}
+
+
+/* sec09 */
+.background {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0, 0, 0);
+    height: 100vh;
+    width: 100vw;
+    color: snow;
+    text-align: center;
+}
+.BG_title_01 {
+   font-size: .6vw;
+   position: absolute;
+   display: flex;
+   flex-direction: row;
+   left:2vw;
+   margin-bottom: 70vh;
+   gap: 1vw;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent; 
+    border-right: 15px solid transparent;
+    border-top: 20px solid silver;
+    margin-left: 25vw;
+}
+.BG_box{
+    background-color: rgb(0,255, 163, 100);
+    width: 100vw;
+    height: 12vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+}
+.BG_box2{
+    background-color: rgb(0,255, 163, 100);
+    width: 100vw;
+    height: 16vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-family: ;
 }
