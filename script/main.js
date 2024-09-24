@@ -18,7 +18,7 @@ text_animation.forEach(text_ani => {
 });
 
 
-// sec3
+// sec3 
 document.addEventListener('DOMContentLoaded', function() {
     const textElements = document.querySelectorAll('.trigger_text div');
     const imageElements = document.querySelectorAll('.triggr_img_container .triggr_img');
@@ -63,18 +63,17 @@ document.addEventListener('DOMContentLoaded', function() {
         // 위로 스크롤
         if (event.deltaY < 0) {
             if (currentIndex > 0) {
-                isAnimating = true; // 애니메이션 시작
+                isAnimating = true;
                 currentIndex--;
-                updateVisibility(); // 텍스트 및 이미지 업데이트
-                setTimeout(() => { isAnimating = false; }, 800); // 애니메이션 지속 시간을 800ms로 설정
+                updateVisibility();
+                setTimeout(() => { isAnimating = false; }, 800); 
             } else if (currentIndex === 0) {
-                // 첫 번째 텍스트가 보이면 위의 섹션으로 이동
                 document.querySelector('.overview_sec').scrollIntoView({ behavior: 'smooth' });
             }
         }
     };
 
-    updateVisibility(); // 페이지 로드 후 첫 번째 텍스트 및 이미지 표시
+    updateVisibility();
 
     textSection.addEventListener('wheel', onScroll, { passive: false });
 });
@@ -152,5 +151,39 @@ document.addEventListener('DOMContentLoaded', function() {
     whatSection.addEventListener('wheel', onScroll, { passive: false });
 });
 
+//
+
+document.addEventListener('DOMContentLoaded', function() {
+    const sections = document.querySelectorAll('.section'); // 모든 섹션 선택
+    let isAnimating = false; // 애니메이션 진행 중인지 여부
+
+    // 섹션이 화면에 맞춰지도록 하는 함수
+    const scrollToSection = (section) => {
+        if (!isAnimating) {
+            isAnimating = true; // 애니메이션 시작
+            section.scrollIntoView({ behavior: 'smooth' }); // 해당 섹션으로 부드럽게 스크롤
+            setTimeout(() => { isAnimating = false; }, 800); // 800ms 후 애니메이션 종료
+        }
+    };
+
+    // IntersectionObserver 설정
+    const observerOptions = {
+        root: null, // 뷰포트를 기준으로 관찰
+        threshold: 0.5 // 섹션의 50%가 화면에 들어오면 트리거
+    };
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !isAnimating) { // 섹션이 화면에 50% 이상 들어왔을 때
+                scrollToSection(entry.target); // 해당 섹션으로 부드럽게 스크롤
+            }
+        });
+    }, observerOptions);
+
+    // 각 섹션을 관찰하도록 설정
+    sections.forEach(section => {
+        sectionObserver.observe(section);
+    });
+});
 
 

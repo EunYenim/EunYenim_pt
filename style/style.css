@@ -272,14 +272,14 @@ font-size: 3.5vh;
     position: relative;
     height: 100vh;
     width: 100vw;
-    background-color:rgb(0, 0, 0);
+    background-color:rgb(45, 45, 45);
     display:flex;
     justify-content: center;
 
 }
  .top {
     height: fit-content;
-    margin-top: 8.5vh;
+    margin-top: 15vh;
     display: flex;
     flex-direction: row;
     color: snow;
@@ -295,8 +295,8 @@ font-size: 3.5vh;
     overflow: hidden;
     border-radius: 50%;
     border: 1px solid #ffffff;
-    width: 43rem;
-    height: 43rem;
+    width: 28vw;
+    height: 28vw;
     display: flex; 
     justify-content: center; 
     align-items: center;
@@ -305,15 +305,15 @@ font-size: 3.5vh;
 
  .triggr_img {
     object-fit: cover;
-    width: 38rem;
-    height:38rem;
+    width: 24vw;
+    height:24vw;
     border-radius: 50%;
  }
 
 
  .trigger_text01 {
     text-align: right;
-    top: 70vh;
+    top: 68vh;
     left: 70vw;
     position: absolute;
     color: snow;
@@ -372,7 +372,7 @@ font-size: 3.5vh;
     justify-content: center;
     align-items: center;
     background-color: rgb(0, 0, 0);
-    height: 90vh;
+    height: 100vh;
     width: 100dvw;
 
 }
