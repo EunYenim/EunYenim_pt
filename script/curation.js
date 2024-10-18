@@ -1,3 +1,123 @@
+// img_select
+const imageColumns = document.querySelectorAll('.image_column');
+const outerWrapper = document.querySelector('.outer_wrapper'); // outer_wrapper 요소 선택
+const numberImages = document.querySelectorAll('.number_img'); // 넘버 이미지 선택
+
+function handleScroll(column) {
+    const scrollTop = column.scrollTop; // 현재 스크롤 위치
+    const viewportHeight = window.innerHeight; // 뷰포트 높이
+    const images = column.querySelectorAll('.scroll_image');
+
+    let closestImage = null;
+    let closestDistance = Infinity;
+    let selectedIndex = 0;
+
+    // 모든 이미지에서 selected 클래스 제거
+    images.forEach((img, index) => {
+        img.classList.remove('selected');
+
+        const imageRect = img.getBoundingClientRect();
+        const imageCenter = imageRect.top + imageRect.height / 2;
+
+        // 뷰포트 중앙과 이미지 중앙 간의 거리 계산
+        const distance = Math.abs(viewportHeight / 2 - imageCenter);
+
+        if (distance < closestDistance) {
+            closestImage = img;
+            closestDistance = distance;
+            selectedIndex = index;
+        }
+    });
+
+    // 선택된 이미지에 selected 클래스 추가
+    if (closestImage) {
+        closestImage.classList.add('selected');
+
+        const selectedImageRect = closestImage.getBoundingClientRect();
+        const selectedImageCenter = selectedImageRect.top + selectedImageRect.height / 2;
+
+        // 선택된 이미지의 중앙을 뷰포트의 중앙에 맞추기
+        let offset = selectedImageCenter - viewportHeight / 2;
+        let newScrollTop = scrollTop + offset;
+
+        column.scrollTo({ top: newScrollTop, behavior: 'smooth' });
+
+        // 넘버 이미지를 모두 숨기고, 선택된 인덱스에 맞는 이미지만 표시
+        numberImages.forEach((numImg, index) => {
+            if (index === selectedIndex) {
+                numImg.style.display = 'block'; // 선택된 넘버 이미지 보이기
+            } else {
+                numImg.style.display = 'none'; // 나머지 넘버 이미지 숨기기
+            }
+        });
+
+        // 선택된 이미지의 인덱스를 콘솔에 출력
+        console.log(`Selected image index: ${selectedIndex}`);
+    }
+}
+
+// 디바운스 함수: 이벤트가 지나치게 자주 발생하지 않도록 제한
+function debounceScroll(callback, delay) {
+    let timeout;
+    return function (...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => callback.apply(this, args), delay);
+    };
+}
+
+// 각 이미지 컬럼에 스크롤 이벤트 리스너 추가
+imageColumns.forEach((column) => {
+    column.addEventListener('scroll', debounceScroll(() => {
+        handleScroll(column);
+    }, 100)); // 100ms로 디바운스 적용
+});
+
+// 페이지 시작 시 첫 번째 이미지 선택
+imageColumns.forEach((column) => {
+    const firstImage = column.querySelector('.scroll_image');
+    if (firstImage) {
+        firstImage.classList.add('selected');
+        const firstImageRect = firstImage.getBoundingClientRect();
+        const firstImageCenter = firstImageRect.top + firstImageRect.height / 2;
+
+        // 첫 번째 이미지의 중앙을 뷰포트의 중앙에 맞추기
+        const offset = firstImageCenter - window.innerHeight / 2;
+        const newScrollTop = column.scrollTop + offset;
+
+        column.scrollTo({ top: newScrollTop, behavior: 'smooth' });
+
+        // 첫 번째 이미지에 맞는 넘버 이미지 표시
+        numberImages.forEach((numImg, index) => {
+            if (index === 0) {
+                numImg.style.display = 'block'; // 첫 번째 넘버 이미지 보이기
+            } else {
+                numImg.style.display = 'none'; // 나머지 넘버 이미지 숨기기
+            }
+        });
+
+        console.log(`Selected image index: 0`); // 첫 번째 이미지 인덱스 출력
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 document.addEventListener("DOMContentLoaded", function() {
     const sections = document.querySelectorAll('.wrapper');
     let currentSection = 0;

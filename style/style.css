@@ -118,7 +118,7 @@ text-shadow:0 0 3px rgb(0,255, 163, 100),
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
+    position: fixed; 
     width: 100%;
     padding: 2rem 3rem;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8)30%, rgba(79, 79, 79, 0)100%); 

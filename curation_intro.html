@@ -11,80 +11,61 @@
 <body>
     <header>
         <nav class="nav_bar">
-            <div class="logo">Travel Tunes</div>
+            <div class="logo"><img src="/sources/img/TripVibe_Logo.png" alt="logo"></div>
             <ul class="nav_links">
-                <li>about</li>
-                <li>works</li>
-                <li class="nav_button">Get started</li>
+                <li>Home</li>
+                <li>What's My Trip-Vibe</li>
             </ul>
         </nav>
     </header>
     <main>
     <div class="outer_wrapper">
+        <section id="select">
         <div class="intro wrapper">
-            <p class="title">Travel Tunes Curation</p>
-            <div class="text_wrapper">
-                <p class="text1">마음에 드는 음악을 선택하여</p>
-                <p class="text2">새로운 추억을 쌓을 여행지를 추천 받아보세요.</p>
-            </div>
-            <div class="start_button">
-                <p class="text_border">start</p>
+            <div class="column first_column">
+                <div class="text_box">
+                <div>What's</div>
+                <div> My Trip-Vibe?</div>
+                <div class="guide">
+                <div class="guide_text"> 스크롤하여 다른 음악을 들어보실 수 있습니다.</div>
+                <div class="guide_text"> 마음에 드는 음악의 이미지를 선택하여 결과를 확인하세요.</div>
             </div>
         </div>
+            </div>
+            <div class="column image_column">
+                <img src="/sources/img/img sample.png" alt="image1" class="scroll_image first_img">
+                <!-- <img src="/sources/img/cover_img_sample01.jpg" alt="image1" class="scroll_image "> -->
+                <img src="/sources/img/img sample.png" alt="image2" class="scroll_image">
+                <img src="/sources/img/img sample.png" alt="image3" class="scroll_image">
+                <img src="/sources/img/img sample.png" alt="image4" class="scroll_image last_img">
+                <img src="/sources/img/img sample.png" alt="image4" class="scroll_image last_img">
+            </div>
+            <div class="column third_column">
+                <div>
+                    <img src="/sources/img/01_img.png" class="number_img" style="width: 5vw;">
+                    <p class="title">Mr.Happy</p>
+                    <div class="line"></div>
+                    <p class="artist">Wizzy</p>
+                    <div class="tag_container">
+                    <div class="tag"> #Hyper Pop</div>
+                    <div class="tag"> #Accustic guitar</div>
+                </div>
+                </div>
+                <div>
+                    <img src="/sources/img/02_img.png"  class="number_img">
+                </div>
+                <div><img src="/sources/img/03_img.png"  class="number_img">
+                </div>
+                <div>
+                    <img src="/sources/img/04_img.png"  class="number_img">
+                </div>
+            </div>
+            <div class="column fourth_column"></div>
+        </div>
+        </div>
+    </section>
     
-        <div class="curation wrapper">
-            <div class="top_text"><p>이미지를 클릭하여 음악을 재생하세요.</p></div>
-            <div class="top_line"></div>
-            <div class="img_wrapper">
-                <div class="img music_image" data-index="0">
-                    <img src="/sources/img/cover_img_sample02.jpg" alt="Image 1">
-                </div>
-                <div class="img music_image" data-index="1">
-                    <img src="/sources/img/cover_img_sample03.jpg" alt="Image 1">
-                </div>
-                <div class="img music_image" data-index="2">
-                    <img src="/sources/img/cover_img_sample04.jpg" alt="Image 1">
-                </div>
-                <div class="img music_image" data-index="3">
-                    <img src="/sources/img/cover_img_sample05.jpg" alt="Image 1">
-                </div>
-                <div class="line_container">
-                    <div class="ver_line line_paddingL"><div class="draw_line"></div></div>
-                    <div class="ver_line line_paddingN"><div class="draw_line"></div></div>
-                    <div class="ver_line line_paddingR"><div class="draw_line"></div></div>
-                </div>
-                <div class="img_text_container">
-                    <span class="img_text"><b style="font-size: 1.2vw;">wixxy</b> <br><br>160BPM &nbsp; &nbsp; &nbsp;D♭m<br>August 10, 2024 <br>
-                        <div class="img_tag"><p>#acoustic guitar</p><p># ericdoa</p><p># glaive</p></div></span>
-                    <span class="img_text"><b style="font-size: 1.2vw;">wixxy</b> <br><br>160BPM&nbsp; &nbsp; &nbsp; D♭m<br>August 10, 2024
-                        <div class="img_tag"><p>#acoustic guitar</p><p># ericdoa</p><p># glaive</p></div></span>
-                    <span class="img_text"><b style="font-size: 1.2vw;">wixxy</b> <br><br>160BPM&nbsp; &nbsp; &nbsp; D♭m<br>August 10, 2024
-                        <div class="img_tag"><p>#acoustic guitar</p><p># ericdoa</p><p># glaive</p></div></span>
-                    <span class="img_text"><b style="font-size: 1.2vw;">wixxy</b> <br><br>160BPM&nbsp; &nbsp; &nbsp; D♭m<br>August 10, 2024
-                        <div class="img_tag"><p>#acoustic guitar</p><p># ericdoa</p><p># glaive</p></div></span>
-                </div>
-                <div class="img_num_container">
-                    <p class="img_num">01</p>
-                    <p class="img_num">02</p>
-                    <p class="img_num">03</p>
-                    <p class="img_num">04</p>
-                </div>
-                <div class="bottom_line"></div>
-            <div class="next_text"><p>이 음악 선택하기</p></div>
-            <div class="current_music"><p class="status">현재 재생 중인 음악</p>
-            <div class="current_music_list">
-                <li class="music_item">aizen plans</li>
-                <li class="music_item">Roit</li>
-                <li class="music_item">How are you</li>
-                <li class="music_item">Long Way</li>
-                <li class="music_item not_playing">Not playing</li>
-            </div>
-            <div class="reset_button music_image" data-index="4"><p>일시정지</p></div>
-            </div>
-        </div>
-    </div>
-    <div class="loading wrapper" id="loading">
-        <div id="numberDisplay">0</div>
+
     </div>
 <!-- </div>
     <div class="result wrapper">
