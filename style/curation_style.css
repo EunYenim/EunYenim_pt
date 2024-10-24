@@ -67,7 +67,7 @@ main {
 }
 
 .nav_bar .logo img {
-    width: 6vw;
+    width: 8vw;
     height: auto;
 }
 
@@ -75,7 +75,7 @@ main {
     list-style: none;
     display: flex;
     justify-content: flex-end;
-    gap: 2rem;
+    gap: 1rem;
     font-size: 1.2rem;
     align-items: center;
     font-family:"pretendard_R" ;
@@ -83,16 +83,18 @@ main {
 
 .nav_bar .nav_links li {
     border: 1px solid rgb(221, 221, 221); 
-    padding: 8px 20px;
+    padding: 6px 16px;
+    font-size: .8vw;
+    font-family: "pretendard_L"; 
     color: rgb(221, 221, 221);
-    transition: background-color 0.3s, color 0.3s;
     border-radius: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* 배경색과 글자색 변화에 애니메이션 추가 */
 }
 
 .nav_bar .nav_links li:hover {
     background-color: rgb(221, 221, 221);
-    color: black;}
-
+    color: black;
+}
 /* slide setting */
 .outer_wrapper {
     display: flex;
@@ -122,14 +124,14 @@ main {
     justify-content:right;
     color: rgb(0, 255, 148); /* 텍스트 색상 */
     font-family: "pretendard_B";
-    font-size: 80px; /* 텍스트 크기 조정 */
+    font-size: 4vw; /* 텍스트 크기 조정 */
     height: 100vh; /* 컬럼의 높이를 전체 뷰포트 높이로 설정 */
-    background-color: rgba(24, 24, 24, 0.8); /* 배경색 및 투명도 추가 */
+    background-color: #121112; /* 배경색 및 투명도 추가 */
     padding: 20px; /* 내부 여백 추가 */
     text-align:left; /* 텍스트 중앙 정렬 */
 }
 .text_box{
-   margin-top: 16vh;
+   margin-top: 8vh;
 }
 .guide_text {
     color:rgb(221, 221, 221);
@@ -138,6 +140,7 @@ main {
     margin-top: 1vh;
 }
 .guide{
+    padding-top: 3vh;
     padding-bottom: 4vh;
 }
 /* select page setting */
@@ -150,6 +153,7 @@ main {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 20px; 
     height: 100vh;
+    width: 100vw;
     overflow: hidden;
 }
 
@@ -161,11 +165,11 @@ main {
     align-items: center;
 }
 .column.first_column {
-    flex-basis: 25%; /* 첫 번째 컬럼의 가로 크기 설정 */
+    flex-basis: 34%; /* 첫 번째 컬럼의 가로 크기 설정 */
 }
 
 .column.image_column {
-    flex-basis: 30%; /* 두 번째 컬럼의 가로 크기 설정 */
+    flex-basis: 28%; /* 두 번째 컬럼의 가로 크기 설정 */
 }
 
 .column.third_column {
@@ -181,39 +185,60 @@ main {
 }
 
 .image_column {
+    cursor: pointer;
     justify-content: center;
     position: relative;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
-    align-items: center; 
-    height: 100vh; 
-    scroll-snap-type: y mandatory; 
-    padding: 0; 
-    display: flex;
-    justify-content: center;
-    align-items: center; 
+    align-items: center;
+    height: 100vh;
+    scroll-snap-type: y mandatory;
+    padding: 0;
+    /* margin: 14vw; */
 }
 
-.scroll_image {
-    margin-left: 6vw;
-    width: 11.25vw;
-    height: auto;
+
+.image_column .scroll_image {
+    width:11.25vw;
+    height: 20vw;
     object-fit: cover;
-    margin-bottom: 22vh;
-    scroll-snap-align: center; 
-    filter: grayscale(100%); 
+    margin-bottom: 24.2vh;
+    scroll-snap-align: center;
+    filter: grayscale(100%) brightness(70%) blur(1.8px);
     transition: transform 0.5s ease, filter 0.5s ease;
+    /* padding: -2vw; */
 }
 
 .scroll_image.selected {
-    transform: scale(1.5);
-    filter: grayscale(0%); 
+    transform: scale(1.68);
+    filter: grayscale(0%);
 }
 
 .scroll_image:last-child {
     visibility: hidden;
 }
+/* select img animation */
+.clicked_img{
+    animation: clickAnimation .2s ease-in-out; /* 클릭 시 애니메이션 적용 */
+}
+
+@keyframes clickAnimation {
+    0% {
+        transform: scale(1.4); /* 기본 크기 */
+    }
+    40% {
+        transform: scale(1.48);
+    }
+    80% {
+        transform: scale(1.6);
+    }
+    100% {
+        transform: scale(1.68); /* 다시 원래 크기로 돌아옴 */
+    }
+}
+
+
 
 .third_column {
     display: flex;
@@ -222,11 +247,12 @@ main {
     height: 100vh;
     justify-content: flex-start; /* 상단에서부터 시작 */
     align-items:flex-start;
-    padding-top: 30vh;
+    padding-top: 24vh;
+    /* padding-left: 1vw; */
 }
 
 .number_img {
-    width: 6vw;
+    width: 8vw;
     height: auto;
     display: none; /* 이미지 숨김 */
 }
@@ -238,24 +264,40 @@ main {
 }
 
 .title {
+    padding-top: 4vh;
     animation-delay: 0.3s; /* 첫 번째 애니메이션 0.3초 지연 */
     font-family: "pretendard_SB"; 
-    font-size: 2.6vw;
+    font-size: 2.2vw;
 }
 
 .artist {
+    padding-top: 1.4vh;
     animation-delay: 0.6s; /* 두 번째 애니메이션 0.6초 지연 */
     font-family: "pretendard_B"; 
-    font-size: 1.6vw;
+    font-size: 1.2vw;
+    color:rgb(167, 175,182);
 }
 
 .tag_container {
+    padding-top: 1.4vh;
     animation-delay: 0.9s; /* 세 번째 애니메이션 0.9초 지연 */
+    display: flex;
+    gap: .3vw;
+}
+
+.tag {
+    border: 1px solid rgb(167, 175,182); 
+    padding: 6px 16px;
+    font-size: .6vw;
+    font-family: "pretendard_L"; 
+    color:rgb(167, 175,182);
+    border-radius: 20px;
 }
 
 .line {
-    width: 100%;
-    border-bottom: 1px solid rgb(221, 221, 221);
+    padding-top: 22vh;
+    width: 1.4vw;
+    border-bottom: 2px solid  rgb(167, 175,182);
 }
 
 @keyframes slideIn {
@@ -268,3 +310,59 @@ main {
         transform: translateX(0); /* 제자리로 이동 */
     }
 }
+
+.fourth_column {
+    height: 100vh;
+    color:rgb(98, 102, 107);
+    font-family: "pretendard_B";
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    font-size: 1vw;
+    padding-bottom: 2vh;
+    padding-right: 1vw;
+}
+
+/* loading animation */
+/* 뷰포트에 맞는 설정 */
+ #loading {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden; /* 스크롤 방지 */
+}
+
+/* 로딩 섹션이 처음에는 숨겨짐 */
+#loading {
+    display: none;
+    background-color: #121112; /* 약간의 투명도 */
+    z-index: 2; /* 스크롤 섹션 위에 표시 */
+}
+
+.expandable_img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-52%, -50%) scale(1);
+    transition: transform 1s ease;
+    clip-path: inset(0%); /* 이미지를 잘리지 않음 (처음 상태) */
+}
+
+.expandable_img.shrink-grow {
+    transform: translate(-52%, -50%) scale(.5); /* 이미지를 축소 */
+    clip-path: inset(6.8% 34%); /* 상, 우, 하, 좌에서 각각 자르기 */
+}
+
+.expandable_img.grow-back {
+    transform: translate(-50%, -50%) scale(1); /* 이미지를 확대 */
+    clip-path: inset(0%); /* 원래 상태로 돌아옴 */
+}
+
+/* 스크롤 섹션 */
+#select {
+    z-index: 1;
+}
+
+

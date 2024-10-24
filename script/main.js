@@ -1,189 +1,145 @@
-const text_animation = document.querySelectorAll('.text_ani');
+// intro vedio
+// document.addEventListener("DOMContentLoaded", () => {
+//     const introSection = document.getElementById("intro_video");
 
-const text_animation_Observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('show');
-        } else {
-            entry.target.classList.remove('show');
-        }
-        console.log(entry.target)
-    });
-}, { threshold: 0.3 });
+//     // 20초 대기 후 스크롤
+//     setTimeout(() => {
+//         document.querySelector(".intro_logo").scrollIntoView({ behavior: 'smooth' });
+//     }, 20000); // 20초 (밀리초 단위)
+// });
+//trigger_text animation 
+document.addEventListener("DOMContentLoaded", () => {
+    const triggerText = document.querySelectorAll(".trigger_intro .trigger_text p");
 
-text_animation.forEach(text_ani => {
-    text_animation_Observer.observe(text_ani);
-
-    
-});
-
-
-// sec3 
-document.addEventListener('DOMContentLoaded', function() {
-    const textElements = document.querySelectorAll('.trigger_text div');
-    const imageElements = document.querySelectorAll('.triggr_img_container .triggr_img');
-    let currentIndex = 0; // 현재 인덱스 추적
-    const textSection = document.querySelector('.trigger_sec');
-    let isAnimating = false; // 애니메이션 진행 중인지 여부
-
-    const updateVisibility = () => {
-        textElements.forEach((el) => {
-            el.classList.remove('visible'); // 모든 텍스트 숨기기
-        });
-
-        imageElements.forEach((img) => {
-            img.style.display = 'none'; // 모든 이미지 숨기기
-        });
-
-        if (currentIndex < textElements.length) {
-            textElements[currentIndex].classList.add('visible'); // 현재 텍스트 보이기
-            imageElements[currentIndex].style.display = 'block'; // 현재 이미지 보이기
-        }
-    };
-
-    const onScroll = (event) => {
-        // 기본 스크롤 방지
-        event.preventDefault();
-
-        if (isAnimating) return; // 애니메이션 진행 중이면 아무것도 하지 않음
-
-        // 아래로 스크롤
-        if (event.deltaY > 0) {
-            if (currentIndex < textElements.length - 1) {
-                isAnimating = true; // 애니메이션 시작
-                currentIndex++;
-                updateVisibility(); // 텍스트 및 이미지 업데이트
-                setTimeout(() => { isAnimating = false; }, 800); // 애니메이션 지속 시간을 800ms로 설정
-            } else if (currentIndex === textElements.length - 1) {
-                // 마지막 텍스트가 보이면 다음 섹션으로 이동
-                document.querySelector('.trigger_overview_sec').scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-        
-        // 위로 스크롤
-        if (event.deltaY < 0) {
-            if (currentIndex > 0) {
-                isAnimating = true;
-                currentIndex--;
-                updateVisibility();
-                setTimeout(() => { isAnimating = false; }, 800); 
-            } else if (currentIndex === 0) {
-                document.querySelector('.overview_sec').scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-    };
-
-    updateVisibility();
-
-    textSection.addEventListener('wheel', onScroll, { passive: false });
-});
-
-// main animation 
-document.addEventListener('DOMContentLoaded', function() {
-    const whatElements = document.querySelectorAll('.main_box span');
-    const whatSection = document.querySelector('.what_conetent');
-    const contentDetail1 = document.querySelector('.content_detail_l');
-    const contentDetail2 = document.querySelector('.content_detail_2');
-    let currentIndex = 0; // 현재 인덱스 추적
-    let isAnimating = false; // 애니메이션 진행 중인지 여부
-
-    // 텍스트 및 디테일 섹션 업데이트 함수
-    const updateVisibility = () => {
-        whatElements.forEach((el, index) => {
-            el.style.display = index === currentIndex ? 'inline' : 'none'; // 현재 인덱스의 텍스트만 표시
-        });
-
-        console.log('현재 인덱스:', currentIndex);
-
-        // main일 때 content_detail 표시, sub일 때 content_detail_2 표시
-        if (currentIndex === 0) {
-            contentDetail1.classList.add('fade-in');
-            contentDetail1.style.display = 'flex';
-            contentDetail2.classList.remove('fade-in');
-            contentDetail2.style.display = 'none';
-        } else {
-            contentDetail1.classList.remove('fade-in');
-            contentDetail1.style.display = 'none';
-            contentDetail2.classList.add('fade-in');
-            contentDetail2.style.display = 'flex';
-        }
-    };
-
-    // 스크롤 이벤트 처리
-    const onScroll = (event) => {
-        event.preventDefault();
-
-        if (isAnimating) return; // 애니메이션 진행 중이면 아무것도 하지 않음
-
-        isAnimating = true;
-
-        // 아래로 스크롤
-        if (event.deltaY > 0) {
-            if (currentIndex < whatElements.length - 1) {
-                currentIndex++;
-                updateVisibility();
-            } else {
-                // 마지막 텍스트에서 한 번 더 스크롤하면 다음 섹션으로 이동
-                document.querySelector('.background').scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-        
-        // 위로 스크롤
-        else if (event.deltaY < 0) {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateVisibility();
-            } else {
-                // 첫 번째 텍스트에서 위로 스크롤하면 이전 섹션으로 이동
-                document.querySelector('.main_content_sec').scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-
-        // 애니메이션 종료 후 상태 초기화
-        setTimeout(() => {
-            isAnimating = false;
-        }, 800); // 800ms 동안 애니메이션
-    };
-
-    updateVisibility(); // 페이지 로드 후 첫 번째 텍스트 표시
-
-    // 섹션에서 스크롤 이벤트 리스너 추가
-    whatSection.addEventListener('wheel', onScroll, { passive: false });
-});
-
-//
-
-document.addEventListener('DOMContentLoaded', function() {
-    const sections = document.querySelectorAll('.section'); // 모든 섹션 선택
-    let isAnimating = false; // 애니메이션 진행 중인지 여부
-
-    // 섹션이 화면에 맞춰지도록 하는 함수
-    const scrollToSection = (section) => {
-        if (!isAnimating) {
-            isAnimating = true; // 애니메이션 시작
-            section.scrollIntoView({ behavior: 'smooth' }); // 해당 섹션으로 부드럽게 스크롤
-            setTimeout(() => { isAnimating = false; }, 800); // 800ms 후 애니메이션 종료
-        }
-    };
-
-    // IntersectionObserver 설정
-    const observerOptions = {
-        root: null, // 뷰포트를 기준으로 관찰
-        threshold: 0.5 // 섹션의 50%가 화면에 들어오면 트리거
-    };
-
-    const sectionObserver = new IntersectionObserver((entries) => {
+    // Intersection Observer 생성
+    const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
-            if (entry.isIntersecting && !isAnimating) { // 섹션이 화면에 50% 이상 들어왔을 때
-                scrollToSection(entry.target); // 해당 섹션으로 부드럽게 스크롤
+            if (entry.isIntersecting) {
+                triggerText.forEach((p, index) => {
+                    setTimeout(() => {
+                        p.classList.add("show");
+                    }, index * 300); // 순차적으로 나타나도록 딜레이 설정
+                });
+            } else {
+                // 섹션이 보이지 않으면 다시 초기화 (원한다면 제거 가능)
+                triggerText.forEach(p => {
+                    p.classList.remove("show");
+                });
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.5 }); // 섹션이 50% 보이면 애니메이션 시작
 
-    // 각 섹션을 관찰하도록 설정
-    sections.forEach(section => {
-        sectionObserver.observe(section);
-    });
+    // .trigger_intro 섹션 감시
+    const triggerIntroSection = document.querySelector(".trigger_intro");
+    observer.observe(triggerIntroSection);
 });
+
+//trigger_img 
+document.addEventListener('DOMContentLoaded', () => {
+    const triggerMain = document.querySelector('.trigger_main');
+    const imgContainers = document.querySelectorAll('.tri_img_container div');
+    const textContainers = document.querySelectorAll('.tri_text_containter div');
+    let currentIndex = 0;
+    let isScrolling = false;
+    let isActive = false;
+  
+    // 이미지 및 텍스트 변경 함수
+    const changeImage = (index) => {
+      imgContainers.forEach((img, i) => {
+        img.classList.remove('active');
+        if (i === index) {
+          img.classList.add('active');
+        }
+      });
+  
+      textContainers.forEach((text, i) => {
+        text.classList.remove('active');
+        if (i === index) {
+          text.classList.add('active');
+        }
+      });
+    };
+  
+    // 기본 스크롤 이벤트 방지
+    const preventScroll = (e) => {
+      if (isActive) { // 섹션이 활성화된 상태일 때만 스크롤 방지
+        e.preventDefault();
+      }
+    };
+  
+    // 스크롤 이벤트 처리 함수
+    const onScroll = (e) => {
+      if (!isActive || isScrolling) return;
+  
+      const deltaY = e.deltaY;
+  
+      // 첫 번째 이미지에서 위로 스크롤 허용
+      if (currentIndex === 0 && deltaY < 0) {
+        // 이전 섹션으로 이동
+        window.removeEventListener('wheel', onScroll);
+        window.scrollBy({ top: -window.innerHeight, behavior: 'smooth' });
+        setTimeout(() => {
+          window.addEventListener('wheel', onScroll, { passive: false });
+        }, 500);
+        return;
+      }
+  
+      // 네 번째 이미지에서 아래로 스크롤 허용
+      if (currentIndex === imgContainers.length - 1 && deltaY > 0) {
+        // 다음 섹션으로 이동
+        window.removeEventListener('wheel', onScroll);
+        window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+        setTimeout(() => {
+          window.addEventListener('wheel', onScroll, { passive: false });
+        }, 500);
+        return;
+      }
+  
+      // 스크롤 애니메이션을 위한 로직
+      isScrolling = true;
+      setTimeout(() => {
+        isScrolling = false;
+      }, 500);
+  
+      if (deltaY > 0 && currentIndex < imgContainers.length - 1) {
+        currentIndex++;
+      } else if (deltaY < 0 && currentIndex > 0) {
+        currentIndex--;
+      }
+  
+      changeImage(currentIndex);
+    };
+  
+    // Intersection Observer 설정
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          isActive = true;
+          changeImage(0); // 해당 섹션으로 진입할 때 첫 이미지로 리셋
+  
+          // 자연스럽게 섹션이 화면에 맞춰지도록 스크롤 조정
+          entry.target.scrollIntoView({ behavior: 'smooth' });
+          // 기본 스크롤 동작 방지 활성화
+          window.addEventListener('wheel', preventScroll, { passive: false });
+        } else {
+          isActive = false;
+          // 기본 스크롤 동작 방지 비활성화
+          window.removeEventListener('wheel', preventScroll);
+        }
+      });
+    }, { threshold: 0.3 }); // 자동 조정이 시작되는 해당 화면 비율
+  
+    observer.observe(triggerMain);
+  
+    // 스크롤 이벤트 리스너 추가
+    window.addEventListener('wheel', onScroll, { passive: false });
+  });
+  
+  
+  
+  
+  
+
+
 
 

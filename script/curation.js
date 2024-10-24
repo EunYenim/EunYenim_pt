@@ -1,7 +1,8 @@
-// img_select
 const imageColumns = document.querySelectorAll('.image_column');
-const outerWrapper = document.querySelector('.outer_wrapper'); // outer_wrapper 요소 선택
+const outerWrapper = document.querySelector('.outer_wrapper'); 
+const textContainers = document.querySelectorAll('.third_column > div'); // 텍스트 컨테이너 선택
 const numberImages = document.querySelectorAll('.number_img'); // 넘버 이미지 선택
+const fourthColumnTexts = document.querySelectorAll('.fourth_column > div'); // fourth_column 텍스트 선택
 
 function handleScroll(column) {
     const scrollTop = column.scrollTop; // 현재 스크롤 위치
@@ -11,6 +12,9 @@ function handleScroll(column) {
     let closestImage = null;
     let closestDistance = Infinity;
     let selectedIndex = 0;
+
+    // 마지막 이미지를 선택하지 않도록 제한
+    const lastImageIndex = images.length - 1;
 
     // 모든 이미지에서 selected 클래스 제거
     images.forEach((img, index) => {
@@ -22,7 +26,7 @@ function handleScroll(column) {
         // 뷰포트 중앙과 이미지 중앙 간의 거리 계산
         const distance = Math.abs(viewportHeight / 2 - imageCenter);
 
-        if (distance < closestDistance) {
+        if (distance < closestDistance && index < lastImageIndex) { // 마지막 이미지는 제외
             closestImage = img;
             closestDistance = distance;
             selectedIndex = index;
@@ -33,6 +37,27 @@ function handleScroll(column) {
     if (closestImage) {
         closestImage.classList.add('selected');
 
+        // 모든 텍스트 및 넘버 이미지 숨김 처리
+        textContainers.forEach((textContainer) => {
+            textContainer.style.display = 'none'; // 텍스트 숨기기
+        });
+        numberImages.forEach((numImg) => {
+            numImg.style.display = 'none'; // 넘버 이미지 숨기기
+        });
+
+        // 선택된 이미지에 해당하는 텍스트 및 넘버 이미지 표시
+        if (textContainers[selectedIndex]) {
+            textContainers[selectedIndex].style.display = 'block';
+        }
+        if (numberImages[selectedIndex]) {
+            numberImages[selectedIndex].style.display = 'block'; // 넘버 이미지 표시
+        }
+
+        // fourth_column 텍스트 업데이트: 선택된 인덱스에 맞는 텍스트만 표시
+        fourthColumnTexts.forEach((fourthText, index) => {
+            fourthText.style.display = (index === selectedIndex) ? 'block' : 'none';
+        });
+
         const selectedImageRect = closestImage.getBoundingClientRect();
         const selectedImageCenter = selectedImageRect.top + selectedImageRect.height / 2;
 
@@ -41,15 +66,6 @@ function handleScroll(column) {
         let newScrollTop = scrollTop + offset;
 
         column.scrollTo({ top: newScrollTop, behavior: 'smooth' });
-
-        // 넘버 이미지를 모두 숨기고, 선택된 인덱스에 맞는 이미지만 표시
-        numberImages.forEach((numImg, index) => {
-            if (index === selectedIndex) {
-                numImg.style.display = 'block'; // 선택된 넘버 이미지 보이기
-            } else {
-                numImg.style.display = 'none'; // 나머지 넘버 이미지 숨기기
-            }
-        });
 
         // 선택된 이미지의 인덱스를 콘솔에 출력
         console.log(`Selected image index: ${selectedIndex}`);
@@ -86,18 +102,62 @@ imageColumns.forEach((column) => {
 
         column.scrollTo({ top: newScrollTop, behavior: 'smooth' });
 
-        // 첫 번째 이미지에 맞는 넘버 이미지 표시
+        // 첫 번째 이미지에 맞는 텍스트 및 넘버 이미지 표시
+        textContainers.forEach((textContainer, index) => {
+            textContainer.style.display = (index === 0) ? 'block' : 'none';
+        });
         numberImages.forEach((numImg, index) => {
-            if (index === 0) {
-                numImg.style.display = 'block'; // 첫 번째 넘버 이미지 보이기
-            } else {
-                numImg.style.display = 'none'; // 나머지 넘버 이미지 숨기기
-            }
+            numImg.style.display = (index === 0) ? 'block' : 'none';
+        });
+        // 첫 번째 이미지에 맞는 fourth_column 텍스트 표시
+        fourthColumnTexts.forEach((fourthText, index) => {
+            fourthText.style.display = (index === 0) ? 'block' : 'none';
         });
 
         console.log(`Selected image index: 0`); // 첫 번째 이미지 인덱스 출력
     }
 });
+
+// click img animation
+
+const scrollImages = document.querySelectorAll('.scroll_image');
+
+scrollImages.forEach((img) => {
+    img.addEventListener('click', function() {
+        // 기존 애니메이션 클래스 제거 (다시 클릭 시에도 애니메이션이 작동하도록)
+        img.classList.remove('clicked_img');
+        
+        // 강제로 재실행할 수 있도록 짧은 시간 후에 다시 추가
+        void img.offsetWidth; 
+        img.classList.add('clicked_img');
+    });
+});
+
+// loading img animation_margin
+document.addEventListener("DOMContentLoaded", function() {
+    const firstImg = document.querySelector(".scroll_image.first_img");
+    const loadingSection = document.getElementById("loading");
+    const expandableImg = document.querySelector(".expandable_img");
+
+    firstImg.addEventListener("click", function() {
+        // 로딩 섹션을 표시
+        loadingSection.style.display = "block";
+
+        // 이미지가 작아지는 효과 추가
+        expandableImg.classList.add("shrink-grow");
+
+        // 이미지가 다시 커지는 애니메이션 적용
+        setTimeout(function() {
+            expandableImg.classList.remove("shrink-grow");
+            expandableImg.classList.add("grow-back");
+        }, 500); // 축소 후 500ms 후에 다시 커짐
+    });
+});
+
+
+
+
+
 
 
 
