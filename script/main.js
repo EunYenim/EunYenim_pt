@@ -37,11 +37,14 @@ document.addEventListener("DOMContentLoaded", () => {
 //trigger_img 
 document.addEventListener('DOMContentLoaded', () => {
     const triggerMain = document.querySelector('.trigger_main');
+    const triCon = document.querySelector('.tri_con'); // tri_con 섹션
+    const triIntro = document.querySelector('.trigger_intro'); // trigger_intro 섹션
     const imgContainers = document.querySelectorAll('.tri_img_container div');
     const textContainers = document.querySelectorAll('.tri_text_containter div');
     let currentIndex = 0;
     let isScrolling = false;
     let isActive = false;
+    let hasReset = false; // 이미지 리셋 여부를 추적하는 플래그
   
     // 이미지 및 텍스트 변경 함수
     const changeImage = (index) => {
@@ -115,7 +118,12 @@ document.addEventListener('DOMContentLoaded', () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           isActive = true;
-          changeImage(0); // 해당 섹션으로 진입할 때 첫 이미지로 리셋
+  
+          // 섹션으로 처음 진입 시 한 번만 이미지 리셋
+          if (!hasReset) {
+            changeImage(0);
+            hasReset = true; // 한 번 리셋되었음을 표시
+          }
   
           // 자연스럽게 섹션이 화면에 맞춰지도록 스크롤 조정
           entry.target.scrollIntoView({ behavior: 'smooth' });
@@ -127,11 +135,9 @@ document.addEventListener('DOMContentLoaded', () => {
           window.removeEventListener('wheel', preventScroll);
         }
       });
-    }, { threshold: 0.3 }); // 자동 조정이 시작되는 해당 화면 비율
+    }, { threshold: 0.3 });
   
     observer.observe(triggerMain);
-  
-    // 스크롤 이벤트 리스너 추가
     window.addEventListener('wheel', onScroll, { passive: false });
   });
   

@@ -244,7 +244,11 @@ height: auto;
     transform: translateY(0);
   }
   
-  
+  .tri_text_containter p {
+    font-family: 'pretendard_R';
+    font-size: 1vw;
+    padding-bottom: 1vh;
+  }
 /* trigger conclusion setting */
 .trigger_con{
     width: 100vw;
