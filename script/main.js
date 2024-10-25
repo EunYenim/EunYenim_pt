@@ -141,7 +141,50 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('wheel', onScroll, { passive: false });
   });
   
-  
+  // tri_con animation
+  document.addEventListener('scroll', () => {
+    const triggerCon = document.querySelector('.trigger_con');
+    const text0 = triggerCon.querySelector('.tri_con_text0');
+    const text = triggerCon.querySelector('.tri_con_text');
+
+    const rect = triggerCon.getBoundingClientRect();
+    if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+        if (!text0.classList.contains('animate')) {
+            text0.classList.add('animate');
+        }
+        if (!text.classList.contains('animate')) {
+            text.classList.add('animate');
+        }
+    } else {
+        text0.classList.remove('animate');
+        text.classList.remove('animate');
+    }
+});
+
+// music img
+document.addEventListener('scroll', () => {
+  const container = document.querySelector('.music_img_container');
+  const images = container.querySelectorAll('img');
+
+  const rect = container.getBoundingClientRect();
+  if (rect.top <= window.innerHeight / 3 && rect.bottom >= window.innerHeight / 2) {
+      images.forEach((img) => {
+          if (!img.classList.contains('animate')) {
+              img.classList.add('animate');
+          }
+      });
+  } else {
+      images.forEach((img) => {
+          img.classList.remove('animate');
+      });
+  }
+});
+
+//music img curve
+
+
+
+
   
   
   

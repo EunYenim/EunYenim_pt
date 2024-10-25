@@ -253,5 +253,151 @@ height: auto;
 .trigger_con{
     width: 100vw;
     height: 100vh;
-    background-color: darkkhaki;
+    background-color:#121112;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'pretendard_B';
+    font-size: 2vw;
+    position: relative;
+    overflow: hidden;
+    color: rgb(221, 221, 221);
+}
+
+
+
+.tri_con_text {
+    font-size: 2vw;
+    padding: 10px 10px;
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    background-image: linear-gradient(90deg,rgb(0, 255, 148) 0%, rgb(0, 255, 148) 100%);
+    background-repeat: no-repeat;
+    background-size: 0% 100%; /* 처음에는 박스가 없는 상태로 시작 */
+    transition: background-size 1s ease;
+    color: #121112;
+}
+
+.tri_con_text.animate {
+    animation: textFadeInUp 1s ease forwards;
+    background-size: 100% 100%; /* 애니메이션 중 배경이 전체를 덮도록 설정 */
+}
+
+.tri_con_text0 {
+    font-size: 2vw;
+    padding: 10px 20px;
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease; /* 텍스트가 위로 올라오도록 설정 */
+}
+
+.tri_con_text0.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes textFadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* music img setting */
+.music_img_container {
+    background-color:#121112;
+    width: 100vw;
+    height: 220vh;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    overflow: hidden;
+    color: rgb(221, 221, 221);
+}
+.img_box{
+    padding-top: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+.img_box img {
+    width: 14vw;
+    opacity: 0;
+    transform: translateY(200px);
+    transition: opacity 3s ease, transform 2s ease;
+    padding-right: 1vw;
+}
+
+.img_box img.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+.img_box div:nth-of-type(1) img.animate{
+    transform: translateY(-340px);
+}
+
+.img_box div:nth-of-type(3) img.animate{
+    transform: translateY(-300px);
+}
+
+.img_box div:nth-of-type(5) img.animate {
+    transform: translateY(-340px); 
+}
+.text_box {
+    margin-top: 30vh;
+    justify-content: center;
+    text-align: center;
+    
+}
+.text_box p {
+    font-family: 'pretendard_R';
+    font-size: 1.4vw;
+    padding-bottom: 1.2vh;
+}
+
+.curve_container {
+    width: 100vw;
+    height: 100px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
+    padding-left: 18.3vw;
+    padding-top: 89.6vh;
+}
+
+#svgObject01{
+    position: absolute;
+    width: 14.2vw;
+    height:auto;
+    clip-path: inset(0 100% 0 0); /* 왼쪽에서 시작해 점차 오른쪽으로 보여지도록 설정 */
+    animation: slideInFromLeft 3s ease forwards;
+
+    
+}
+#svgObject02{
+    position: absolute;
+    width: 28.6vw;
+    height:auto;
+    margin-left: 35.9vw;
+    margin-top:-25.7vh;
+}
+/*  반만 보이게 하고 1. 오른쪽 부터 2. 위로 부터 */
+@keyframes slideInFromLeft {
+    to {
+        clip-path: inset(0 0 0 0); /* 완전히 보여지도록 설정 */
+    }
+}
+
+/* main experience logo */
+.ex_logo {
+    width: 100vw;
+    height: 100vh;
+    background-color: aqua;
 }
