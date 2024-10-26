@@ -372,28 +372,54 @@ height: auto;
     padding-top: 89.6vh;
 }
 
-#svgObject01{
+#svgObject01 {
     position: absolute;
     width: 14.2vw;
-    height:auto;
-    clip-path: inset(0 100% 0 0); /* 왼쪽에서 시작해 점차 오른쪽으로 보여지도록 설정 */
-    animation: slideInFromLeft 3s ease forwards;
-
-    
-}
-#svgObject02{
+    height: auto;
+    clip-path: inset(0 100% 0 0); /* 초기 상태 */
+    transition: clip-path 3s ease 1s; /* 애니메이션 진행 시간: 3초, 지연 시간: 1초 */
+  }
+  
+  #svgObject02 {
     position: absolute;
     width: 28.6vw;
-    height:auto;
+    height: auto;
     margin-left: 35.9vw;
-    margin-top:-25.7vh;
-}
-/*  반만 보이게 하고 1. 오른쪽 부터 2. 위로 부터 */
-@keyframes slideInFromLeft {
-    to {
-        clip-path: inset(0 0 0 0); /* 완전히 보여지도록 설정 */
-    }
-}
+    margin-top: -25.7vh;
+    clip-path: inset(0 0 70% 100%); /* 초기 상태 */
+    transition: clip-path 1s ease-in 1s; /* 애니메이션 진행 시간: 1.4초, 지연 시간: 1초 */
+  }
+  
+  #svgObject03 {
+    position: absolute;
+    width: 28.6vw;
+    height: auto;
+    margin-left: 35.9vw;
+    margin-top: -25.7vh;
+    clip-path: inset(24% 100% 0 0); /* 초기 상태 */
+    transition: clip-path 1.4s ease 2s; /* 애니메이션 진행 시간: 2초, 지연 시간: 2.4초 */
+  }
+  
+  /* 애니메이션 클래스 */
+  #svgObject01.animate {
+    clip-path: inset(0 0 0 0); /* 애니메이션 완료 상태 */
+  }
+  
+  #svgObject02.animate {
+    clip-path: inset(0 0 70% 0); /* 애니메이션 완료 상태 */
+  }
+  
+  #svgObject03.animate {
+    clip-path: inset(24% 0 0 0); /* 애니메이션 완료 상태 */
+  }
+  
+  /* 초기 상태로 돌아갈 때의 시간 설정 */
+  #svgObject01,
+  #svgObject02,
+  #svgObject03 {
+    transition: clip-path 1s ease; /* 초기 상태로 돌아갈 때의 시간: 1초 */
+  }
+  
 
 /* main experience logo */
 .ex_logo {

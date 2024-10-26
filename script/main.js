@@ -181,6 +181,48 @@ document.addEventListener('scroll', () => {
 });
 
 //music img curve
+document.addEventListener('scroll', () => {
+  const container = document.querySelector('.music_img_container');
+  const images = container.querySelectorAll('.img_box img');
+  const svgObject01 = document.querySelector('#svgObject01');
+  const svgObject02 = document.querySelector('#svgObject02');
+  const svgObject03 = document.querySelector('#svgObject03');
+  const objects = container.querySelectorAll('object');
+
+  const rect = container.getBoundingClientRect();
+  if (rect.top <= window.innerHeight / 3 && rect.bottom >= window.innerHeight / 2) {
+    // 이미지 애니메이션 트리거
+    images.forEach((img) => {
+      img.classList.add('animate');
+    });
+
+    // 이미지 애니메이션이 모두 끝난 후 첫 번째와 두 번째 SVG 애니메이션 시작
+    images[images.length - 1].addEventListener('transitionend', () => {
+      // 첫 번째와 두 번째 SVG 애니메이션을 동시에 시작
+      svgObject01.classList.add('animate');
+      svgObject02.classList.add('animate');
+
+      // 두 번째 SVG 애니메이션이 끝난 후 세 번째 SVG 애니메이션 시작
+      svgObject02.addEventListener('transitionend', () => {
+        svgObject03.classList.add('animate');
+      }, { once: true });
+    }, { once: true });
+  } else {
+    // 섹션이 뷰포트 밖으로 나가면 초기 상태로 복귀
+    images.forEach((img) => {
+      img.classList.remove('animate');
+    });
+
+    // 모든 SVG 애니메이션 초기화
+    objects.forEach((object) => {
+      object.classList.remove('animate');
+    });
+  }
+});
+
+
+
+
 
 
 
