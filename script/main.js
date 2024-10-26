@@ -188,6 +188,7 @@ document.addEventListener('scroll', () => {
   const svgObject02 = document.querySelector('#svgObject02');
   const svgObject03 = document.querySelector('#svgObject03');
   const objects = container.querySelectorAll('object');
+  const paragraphs = container.querySelectorAll('.text_box p');
 
   const rect = container.getBoundingClientRect();
   if (rect.top <= window.innerHeight / 3 && rect.bottom >= window.innerHeight / 2) {
@@ -205,6 +206,15 @@ document.addEventListener('scroll', () => {
       // 두 번째 SVG 애니메이션이 끝난 후 세 번째 SVG 애니메이션 시작
       svgObject02.addEventListener('transitionend', () => {
         svgObject03.classList.add('animate');
+
+        // 세 번째 SVG 애니메이션이 끝난 후 텍스트 애니메이션 시작
+        svgObject03.addEventListener('transitionend', () => {
+          paragraphs.forEach((p) => {
+            if (!p.classList.contains('animate')) { // 이미 애니메이션 클래스가 없는 경우에만 추가
+              p.classList.add('animate');
+            }
+          });
+        }, { once: true });
       }, { once: true });
     }, { once: true });
   } else {
@@ -217,8 +227,14 @@ document.addEventListener('scroll', () => {
     objects.forEach((object) => {
       object.classList.remove('animate');
     });
+
+    // 텍스트 애니메이션 초기화
+    paragraphs.forEach((p) => {
+      p.classList.remove('animate');
+    });
   }
 });
+
 
 
 
