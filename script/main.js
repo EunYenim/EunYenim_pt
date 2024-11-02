@@ -235,6 +235,100 @@ document.addEventListener('scroll', () => {
   }
 });
 
+// main button link
+document.addEventListener('scroll', () => {
+  const container = document.querySelector('.click_main_link');
+  const title = container.querySelector('.click_title');
+  const textParagraphs = container.querySelectorAll('.click_text p');
+  const button = container.querySelector('.link_button');
+
+  const rect = container.getBoundingClientRect();
+  if (rect.top <= window.innerHeight / 3 && rect.bottom >= window.innerHeight / 2) {
+    // 텍스트 애니메이션 트리거
+    title.classList.add('animate');
+    textParagraphs.forEach((p, index) => {
+      p.classList.add('animate');
+    });
+
+    // 마지막 텍스트 애니메이션이 끝난 후 버튼 애니메이션 시작
+    const lastParagraph = textParagraphs[textParagraphs.length - 1];
+    lastParagraph.addEventListener('transitionend', () => {
+      button.classList.add('animate');
+    }, { once: true });
+  } else {
+    // 섹션이 뷰포트 밖으로 나가면 초기 상태로 복귀
+    title.classList.remove('animate');
+    textParagraphs.forEach((p) => {
+      p.classList.remove('animate');
+    });
+    button.classList.remove('animate');
+  }
+});
+
+// con_text
+const bodyTextObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const paragraphs = entry.target.querySelectorAll("p");
+        paragraphs.forEach((paragraph, index) => {
+          setTimeout(() => {
+            paragraph.classList.add("visible");
+          }, index * 500); // 순차적으로 애니메이션 시작
+        });
+
+        setTimeout(() => {
+          const conText = entry.target.nextElementSibling;
+          if (conText && conText.classList.contains("con_text")) {
+            conText.classList.add("visible");
+          }
+        }, paragraphs.length * 500);
+      } else {
+        entry.target.querySelectorAll("p").forEach((paragraph) => {
+          paragraph.classList.remove("visible");
+        });
+        const conText = entry.target.nextElementSibling;
+        if (conText && conText.classList.contains("con_text")) {
+          conText.classList.remove("visible");
+        }
+      }
+    });
+  },
+  { threshold: 0.5 }
+);
+
+document.querySelectorAll(".body_text").forEach((bodyText) => {
+  bodyTextObserver.observe(bodyText);
+});
+
+// strategy ani
+const observerOptions = {
+  threshold: 0.5
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const img = entry.target.querySelector(".st_img_01");
+      const text1 = entry.target.querySelector(".st_text_01");
+      const text2 = entry.target.querySelector(".st_text_02");
+
+      img.classList.add("visible");
+      setTimeout(() => text1.classList.add("visible"), 200); // `st_img_01` 이후
+      setTimeout(() => text2.classList.add("visible"), 400); // `st_text_01` 이후
+    } else {
+      entry.target.querySelector(".st_img_01").classList.remove("visible");
+      entry.target.querySelector(".st_text_01").classList.remove("visible");
+      entry.target.querySelector(".st_text_02").classList.remove("visible");
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll(".strategy").forEach((section) => {
+  observer.observe(section);
+});
+
+
 
 
 

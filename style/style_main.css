@@ -1,0 +1,304 @@
+/* main experience logo */
+.ex_logo {
+    width: 100vw;
+    height: 160vh;
+    background-color:#121112;
+    display: flex;
+    justify-content: center;
+
+}
+
+.ex_logo p {
+    margin-top: 20vh;
+    font-family: 'pretendard_R';
+    font-size: 1vw;
+    color:rgb(221, 221, 221);
+}
+
+/* click main experience */
+.click_main_link {
+    width: 100vw;
+    height: 100vh;
+    background-color:#121112;
+    color: rgb(221, 221, 221);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'pretendard_R';
+    font-size: 1.6vw;
+  }
+  
+  .click_main_link p {
+    padding-bottom: 1.4vh;
+  }
+  
+  .click_title {
+    color: rgb(0, 255, 148);
+    font-family: 'pretendard_B';
+    font-size: 3vw;
+    padding: 5vh;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  
+  .click_main_link .click_text p {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  
+  .link_button {
+    color: #121112;
+    font-family: 'pretendard_R';
+    font-size: 1vw;
+    background-color: rgb(221, 221, 221);
+    color: #121112;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    transition: all 3s ease;
+    border-radius: 50px;
+    text-decoration: none;
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+  
+  .link_button p {
+    margin: 0;
+    padding: 26px 30px;
+    font-family: 'pretendard_B';
+    transition: color 0.3s ease;
+  }
+  
+  .link_button:hover {
+    background-color: #00FF94;
+  }
+  
+  .link_button:hover p {
+    color: #121112;
+  }
+  
+  .link_button:active {
+    transform: scale(0.95);
+  }
+  
+  /* 애니메이션 클래스 적용 */
+  .click_main_link .click_title.animate,
+  .click_main_link .click_text p.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .link_button.animate {
+    opacity: 1;
+  }
+
+  /* 기본 스타일 */
+.click_text p {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  
+  /* 애니메이션 클래스 적용 */
+  .click_text p.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .click_text p:nth-of-type(1) {
+    transition-delay: 0.2s; /* 첫 번째 p 요소의 딜레이 */
+  }
+  
+  .click_text p:nth-of-type(2) {
+    transition-delay: 0.6s; /* 두 번째 p 요소의 딜레이 */
+  }
+  
+  /* project process */
+
+  .project_process {
+    width: 100vw;
+    height: 120vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#121112;
+  }
+  .project_process img {
+    width: 46vw;
+  }
+/* bg */
+.bg_01{
+  width: 100vw;
+  height: 120vh;
+  display: inline-block;
+  background-color:#121112;
+  color: rgb(221, 221, 221);
+}
+
+
+.index_text {
+  font-family: 'pretendard_L';
+  font-size: .8vw;
+  position: absolute;
+  display: flex;
+  gap: 10px;
+  text-align: center;
+  align-items: center;
+  margin-left: 2vw;
+  margin-top: 16vh;
+}
+
+.body_text {
+  margin-top: 36vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'pretendard_R';
+  font-size: 2.2vw;
+}
+
+.body_text p {
+  padding-bottom: 1.6vh;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.body_text p.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.con_text {
+  margin-top: 24vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'pretendard_R';
+  background-color: #00FF94;
+  color: #121112;
+  font-size: 1.2vw;
+}
+.con_text p {
+  padding: 2vh;
+}
+
+.con_text {
+  opacity: 0;
+  transition: opacity .4s ease;
+}
+
+.con_text.visible {
+  opacity: 1;
+}
+.circle_s {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: rgb(221, 221, 221);
+}
+    /* design system */
+  .design_system {
+    width: 100vw;
+    height: 120vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#121112;
+  }
+  .design_system img {
+    width: 46vw;
+  }
+
+  /* strategy */
+  .strategy{
+  width: 100vw;
+  height: 140vh;
+  background-color:#121112;
+  color: rgb(221, 221, 221);
+  }
+
+  .st_container {
+    height: 120vh;
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items: center;
+    gap: 16vw;
+  }
+
+.st_text_container_01 {
+  justify-content: center;
+  align-items: center;
+  margin-top: 30vh;
+  width: 34vw;
+}
+.st_text_container_01 div{
+  padding-bottom:32vh;
+}
+.st_text_01{
+  font-family: 'pretendard_B';
+  font-size: 5.6vw;
+  color:  #00FF94;
+}
+
+.st_text_02 p:first-of-type {
+  font-family: 'pretendard_B';
+  font-size: 1.4vw;
+  padding-bottom: 3vh;
+}
+.st_text_02{
+  font-family: 'pretendard_R';
+  font-size: 1.2vw;
+}
+.st_text_02 p{
+padding-bottom: .8vh;
+}
+
+.st_img_01{
+  justify-content: center;
+  align-items: center;
+}
+  .st_img_01 img{
+    width: 22vw;
+    height: auto;
+  }
+
+  .st_text_container_02 {
+    justify-content: center;
+    align-items: center;
+    width: 34vw;
+  }
+
+  .st_text_container_02 div:first-of-type {
+    font-size: 5.6vw;
+    padding-bottom:32vh;
+  }
+
+  .st_img_01, .st_text_01, .st_text_02 {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  
+  .st_img_01.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+  }
+  
+  .st_text_01.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.4s;
+  }
+  
+  .st_text_02.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.6s;
+  }
